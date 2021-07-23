@@ -11,15 +11,24 @@ app.get('/', (req, res) => {
       console.log(stderr);
       //check if has error
       if (err) {
-         res.end('ERR');
+         return res.json({
+            error: true,
+            message: err.message
+         });
       }
 
       //check if has std error
       if (stderr) {
-         res.end('EST');
+         return res.json({
+            error: true,
+            message: stderr
+         });
       }
 
-      res.end('TEST');
+      res.json({
+         error: false,
+         message: stdout
+      });
    });
 });
 
