@@ -1,12 +1,12 @@
 const express = require('express');
 const {
    exec
-} = require("child_process");
+} = require('child_process');
 const app = express();
 
 app.get('/', async (req, res) => {
-   console.log(req.params.command);
-   exec(req.params.command, (err, stdout, stderr) => {
+   console.log(req.query.command);
+   exec(req.query.command, (err, stdout, stderr) => {
       if (err)
          return res.end(err);
       if (stderr)
