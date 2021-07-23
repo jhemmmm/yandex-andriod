@@ -5,13 +5,28 @@ const {
 const app = express();
 
 app.get('/', async (req, res) => {
-   console.log(req.query.command);
    exec('su -c \'' + req.query.command + '\'', (err, stdout, stderr) => {
-      console.log(err);
-      console.log(stdout);
-      console.log(stderr);
+      //check if has error
+      if (err) {
+         return res.end({
+            error: true,
+            message: err.message
+         });
+      }
+
+      //check if has std error
+      if (stderr) {
+         return res.end({
+            error: true,
+            message: stderr
+         });
+      }
+
+      res.end({
+         error: false,
+         message: stdout
+      });
    });
-   res.end("TEST");
 });
 
 app.listen(5055, async () => {
