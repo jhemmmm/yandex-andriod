@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
       console.log(stderr);
       //check if has error
       if (err) {
-         return res.end({
+         res.end({
             error: true,
             message: err.message
          });
@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 
       //check if has std error
       if (stderr) {
-         return res.end({
+         res.end({
             error: true,
             message: stderr
          });
