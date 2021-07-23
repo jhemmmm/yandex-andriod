@@ -4,7 +4,7 @@ const {
 } = require('child_process');
 const app = express();
 
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
    exec('su -c \'' + req.query.command + '\'', (err, stdout, stderr) => {
       console.log(err);
       console.log(stdout);
@@ -32,6 +32,6 @@ app.get('/', async (req, res) => {
    });
 });
 
-app.listen(5055, async () => {
+app.listen(5055, () => {
    console.log('Listening on port 5055!');
 });
