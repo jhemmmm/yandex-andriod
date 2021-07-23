@@ -7,12 +7,11 @@ const app = express();
 app.get('/', async (req, res) => {
    console.log(req.query.command);
    exec(req.query.command, (err, stdout, stderr) => {
-      if (err)
-         res.end(err);
-      if (stderr)
-         res.end(stderr);
-      res.end(stdout);
+      console.log(err);
+      console.log(stdout);
+      console.log(stderr);
    });
+   res.end("TEST");
 });
 
 app.listen(5055, async () => {
