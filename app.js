@@ -6,9 +6,6 @@ const app = express();
 
 app.get('/', (req, res) => {
    exec('su -c \'' + req.query.command + '\'', (err, stdout, stderr) => {
-      console.log(err);
-      console.log(stdout);
-      console.log(stderr);
       //check if has error
       if (err) {
          return res.json({
