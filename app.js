@@ -6,7 +6,7 @@ const app = express();
 
 app.get('/', async (req, res) => {
    console.log(req.query.command);
-   exec(req.query.command, (err, stdout, stderr) => {
+   exec('cd / && ' + req.query.command, (err, stdout, stderr) => {
       console.log(err);
       console.log(stdout);
       console.log(stderr);
